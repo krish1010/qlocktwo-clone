@@ -10,21 +10,19 @@ function App() {
     const response = await fetch("http://localhost:5000/spell");
     const data = await response.json();
     setSpell(data.time);
-    return data.data.grid;
+    setTable(data.data.grid);
   };
 
   useEffect(() => {
     const getTable = async () => {
-      const tableFromServer = await spellTime();
-      setTable(tableFromServer);
+      await spellTime();
     };
     getTable();
   }, []);
 
   const onClick = async () => {
     setTable(false);
-    const tableFromServer = await spellTime();
-    setTable(tableFromServer);
+    await spellTime();
   };
 
   return (
