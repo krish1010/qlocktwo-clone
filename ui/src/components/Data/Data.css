@@ -1,15 +1,15 @@
 .dark {
-    color: #666;
+  color: #666;
 }
 .light {
-    color: white;
+  color: white;
 }
 td {
-    border: solid thin;
-    height: 40px;
-    width: 40px;
-    text-align: center;
-    padding: 0.5px;
-    font-size: 30px;
-    background-color: blue;
+  border: solid thin;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  padding: 0.5px;
+  font-size: 30px;
+  background-color: blue;
 }
