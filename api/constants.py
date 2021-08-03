@@ -8,6 +8,7 @@ MIN_MAP = {
     30: 'half',
 }
 HOUR_MAP = {
+    0: 'twelve',
     1: 'one',
     2: 'two',
     3: 'three',
