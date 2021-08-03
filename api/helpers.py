@@ -8,7 +8,7 @@ def get_current_time():
 
 
 def get_grid_info():
-    spell = ['it', 'is', 'o', 'clock']
+    spell = ['it', 'is', ]
     hour, minutes = get_current_time()
     # import random
     # hour = random.randint(1, 23)
@@ -40,6 +40,9 @@ def get_grid_info():
             spell.append('past')
     if min_ == 15 or 60 - min_ == 15:
         spell.append('a')
+    if min_ == 0:
+        spell.append('o')
+        spell.append('clock')
     spell.append(HOUR_MAP.get(hour))
 
     return spell, lights
