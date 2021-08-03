@@ -20,12 +20,12 @@ def get_grid_info():
         spell.append('am')
 
     min_ = minutes
-    count = 4
-    lights = [1, 1, 1, 1]
+    count = 0
+    lights = [0, 0, 0, 0]
     while min_ % 5 != 0:
         min_ -= 1
-        count -= 1
-        lights[count] = 0
+        lights[count] = 1
+        count += 1
     if min_ > 30:
         spell.append('to')
         spell.append(MIN_MAP.get(60 - min_))
