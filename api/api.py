@@ -9,7 +9,8 @@ CORS(app=app)
 
 @app.route('/spell')
 def get_current_time_spell():
-    return {'data': GRID, 'time': calc()}
+    spell, lights = calc()
+    return {'data': GRID, 'spell': spell, 'lights': lights}
 
 
 def get_current_time():
@@ -18,35 +19,38 @@ def get_current_time():
 
 
 def calc():
-    l = ['it', 'is', 'o', 'clock']
+    spell = ['it', 'is', 'o', 'clock']
     hour, minutes = get_current_time()
-    # hour = 21
-    # minutes = 42
+    # import random
+    # hour = random.randint(1, 23)
+    # minutes = random.randint(1, 59)
     if hour >= 12:
-        l.append('pm')
+        spell.append('pm')
         hour -= 12
     else:
-        l.append('am')
+        spell.append('am')
 
     min_ = minutes
-    _ = 5
+    count = 4
+    lights = [1, 1, 1, 1]
     while min_ % 5 != 0:
         min_ -= 1
-        _ -= 1
+        count -= 1
+        lights[count] = 0
     if min_ > 30:
-        l.append('to')
-        l.append(MIN_MAP.get(60 - min_))
+        spell.append('to')
+        spell.append(MIN_MAP.get(60 - min_))
         hour += 1
     else:
         if min_ == 25:
-            l.append('twenty-min-f')
-            l.append('five-min')
+            spell.append('twenty-min-f')
+            spell.append('five-min')
         else:
-            l.append(MIN_MAP.get(min_))
+            spell.append(MIN_MAP.get(min_))
         if min_ != 0:
-            l.append('past')
+            spell.append('past')
     if min_ == 15 or 60 - min_ == 15:
-        l.append('a')
-    l.append(HOUR_MAP.get(hour))
+        spell.append('a')
+    spell.append(HOUR_MAP.get(hour))
 
-    return l
+    return spell, lights
