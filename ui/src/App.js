@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [spell, setSpell] = useState(0);
   const [table, setTable] = useState(false);
+  const [tempTable, setTempTable] = useState(false);
   const [lights, setLights] = useState([0, 0, 0, 0]);
 
   const spellTime = async () => {
@@ -14,11 +15,13 @@ function App() {
     setSpell(data.spell);
     setTable(data.data.grid);
     setLights(data.lights);
+    return data.data.grid;
   };
 
   useEffect(() => {
     const getTable = async () => {
-      await spellTime();
+      const data = await spellTime();
+      setTempTable(data);
     };
     getTable();
   }, []);
@@ -31,7 +34,11 @@ function App() {
   return (
     <div className="center">
       <h3>May the Force be with You.</h3>
-      {table && <Grid allElements={table} spell={spell} />}
+      {table ? (
+        <Grid allElements={table} spell={spell} />
+      ) : (
+        tempTable && <Grid allElements={tempTable} spell={[]} />
+      )}
       <Minutes lights={lights} />
       <Button onClick={onClick} />
     </div>
