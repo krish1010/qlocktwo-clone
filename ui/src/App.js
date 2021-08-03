@@ -1,6 +1,7 @@
 import "./App.css";
 import Grid from "./components/Grid/Grid";
 import Button from "./components/Button/Button";
+import Minutes from "./components/Minutes/Minutes";
 import { useEffect, useState } from "react";
 function App() {
   const [spell, setSpell] = useState(0);
@@ -31,22 +32,7 @@ function App() {
     <div className="center">
       <h3>May the Force be with You.</h3>
       {table && <Grid allElements={table} spell={spell} />}
-      <div>
-        <h2>
-          <span id="1" className={lights[0] ? "on" : "off"}>
-            I
-          </span>
-          <span id="2" className={lights[1] ? "on" : "off"}>
-            I
-          </span>
-          <span id="3" className={lights[2] ? "on" : "off"}>
-            I
-          </span>
-          <span id="4" className={lights[3] ? "on" : "off"}>
-            I
-          </span>
-        </h2>
-      </div>
+      <Minutes lights={lights} />
       <Button onClick={onClick} />
     </div>
   );
